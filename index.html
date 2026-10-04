@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medienmagie</title>
+<meta name="description" content="Medienmagie – Medienpädagogik mit Zauberei, Licht und Film. ">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👁</text></svg>">
+<style>
+  :root {
+    --bg: #0033ff;
+    --ink: #ffffff;
+    --accent: #ffb400;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    transition: background .6s ease, color .6s ease;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  button.logo {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    width: min(70vw, 340px);
+    border-radius: 12px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  button.logo:focus-visible { outline: 3px solid var(--accent); outline-offset: 8px; }
+  button.logo svg { width: 100%; height: auto; display: block; }
+  .frame, .lid { stroke: var(--ink); transition: stroke .6s ease; }
+  .iris { fill: var(--accent); transition: fill .6s ease; }
+  .play { fill: var(--bg); transition: fill .6s ease; }
+  button.logo:active .iris { transform: scale(.94); }
+  .iris { transform-origin: 100px 80px; transition: fill .6s ease, transform .15s ease; }
+  h1 {
+    font-size: clamp(1.8rem, 6vw, 2.6rem);
+    font-weight: 400;
+    letter-spacing: .04em;
+    margin: 0;
+  }
+  p {
+    margin: 0;
+    font-size: 1rem;
+    opacity: .75;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<button class="logo" id="logo" type="button" aria-label="Farbe wechseln">
+  <svg viewBox="0 0 200 160" role="img" aria-hidden="true">
+    <!-- Sucher-Rahmen -->
+    <g class="frame" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 42 V12 H40"/>
+      <path d="M160 12 H190 V42"/>
+      <path d="M190 118 V148 H160"/>
+      <path d="M40 148 H10 V118"/>
+    </g>
+    <!-- Auge -->
+    <path class="lid" d="M32 80 Q100 20 168 80 Q100 140 32 80 Z" fill="none" stroke-width="6" stroke-linejoin="round"/>
+    <circle class="iris" cx="100" cy="80" r="26"/>
+    <!-- Play-Pupille -->
+    <path class="play" d="M92 67 L116 80 L92 93 Z"/>
+  </svg>
+</button>
+
+<h1>Medienmagie</h1>
+
+<script>
+  // Fünf grelle Farbwelten: Hintergrund und Akzent sind jeweils Komplementärfarben
+  var paletten = [
+    { bg: "#0033ff", ink: "#ffffff", accent: "#ffb400" }, // Knallblau / Gelborange
+    { bg: "#ff1f8e", ink: "#ffffff", accent: "#19ff8c" }, // Pink / Neongrün
+    { bg: "#7a00ff", ink: "#ffffff", accent: "#f2ff00" }, // Violett / Neongelb
+    { bg: "#ff3b00", ink: "#ffffff", accent: "#00e5ff" }, // Signalrot / Cyan
+    { bg: "#ffe600", ink: "#1a0033", accent: "#5a00ff" }  // Gelb / Ultraviolett
+  ];
+  var i = 0;
+  var root = document.documentElement;
+
+  function anwenden(p) {
+    root.style.setProperty("--bg", p.bg);
+    root.style.setProperty("--ink", p.ink);
+    root.style.setProperty("--accent", p.accent);
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.name = "theme-color";
+      document.head.appendChild(meta);
+    }
+    meta.content = p.bg;
+  }
+
+  anwenden(paletten[0]);
+  document.getElementById("logo").addEventListener("click", function () {
+    i = (i + 1) % paletten.length;
+    anwenden(paletten[i]);
+  });
+</script>
+</body>
+</html>
