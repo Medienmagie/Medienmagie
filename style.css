@@ -1,0 +1,92 @@
+:root {
+  --bg: #0033ff;
+  --ink: #ffffff;
+  --card: #0a1a66;
+  --head: #ffb400;
+  --accent: #ffb400;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.65;
+  transition: background .6s ease, color .6s ease;
+}
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 1.25rem 2.5rem; }
+
+/* Kopf mit Logo */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+button.logo {
+  background: none; border: 0; padding: 0; cursor: pointer;
+  width: min(62vw, 270px); border-radius: 14px;
+  -webkit-tap-highlight-color: transparent;
+}
+button.logo:focus-visible, a.logo-link:focus-visible { outline: 3px solid var(--head); outline-offset: 8px; }
+button.logo svg, a.logo-link svg { width: 100%; height: auto; display: block; }
+.frame, .lid { stroke: var(--ink); transition: stroke .6s ease; }
+.iris { fill: var(--accent); transition: fill .6s ease, transform .15s ease; transform-origin: 100px 80px; }
+.play { fill: var(--bg); transition: fill .6s ease; }
+button.logo:active .iris { transform: scale(.93); }
+h1 {
+  font-family: "Trebuchet MS", system-ui, sans-serif;
+  font-size: clamp(2.4rem, 9vw, 4rem);
+  letter-spacing: .03em; line-height: 1.1;
+  margin: 1.25rem 0 0; font-weight: 800;
+}
+
+/* Karten */
+.card {
+  background: var(--card); color: #fff;
+  border-top: 5px solid var(--head);
+  border-radius: 16px;
+  padding: 1.75rem 1.75rem 1.9rem;
+  margin: 1.5rem 0;
+  transition: background .6s ease, border-color .6s ease;
+}
+.card h2 {
+  font-family: "Trebuchet MS", system-ui, sans-serif;
+  font-size: 1.5rem; line-height: 1.25; margin: 0 0 .75rem;
+  color: var(--head); transition: color .6s ease;
+}
+.card p { margin: 0 0 1rem; }
+.card p:last-child { margin-bottom: 0; }
+.card a { color: var(--head); text-underline-offset: 3px; font-weight: 600; }
+.card a:hover { text-decoration-thickness: 3px; }
+.lead { font-size: 1.25rem; }
+
+/* Über mich: drei Etappen */
+.etappen { display: grid; gap: 1.25rem; margin-top: 1.25rem; }
+@media (min-width: 800px) { .etappen { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; } }
+.etappe { border-left: 3px solid var(--head); padding-left: 1rem; transition: border-color .6s ease; }
+.etappe h3 {
+  margin: 0 0 .4rem; font-size: .95rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--head); transition: color .6s ease;
+}
+.etappe p { font-size: 1.02rem; }
+
+/* Fußzeile */
+.fuss { text-align: center; margin-top: 2rem; }
+.fuss a {
+  display: inline-block; background: var(--card); color: #fff;
+  padding: .45rem 1rem; border-radius: 999px; margin: .2rem;
+  text-decoration: none; font-size: .95rem; transition: background .6s ease;
+}
+.fuss a:hover, .fuss a:focus-visible { text-decoration: underline; }
+
+/* Unterseiten */
+.kopf-klein { display: flex; align-items: center; gap: 1rem; padding: 1.5rem 0 .5rem; }
+.kopf-klein a.logo-link { width: 72px; flex: none; border-radius: 8px; }
+.kopf-klein .zurueck { color: var(--ink); font-weight: 700; text-decoration: none; font-size: 1.1rem; }
+.kopf-klein .zurueck:hover { text-decoration: underline; }
+.text h1 { font-size: clamp(1.8rem, 6vw, 2.4rem); margin: 0 0 1rem; }
+.text h2 { font-size: 1.2rem; margin: 1.5rem 0 .4rem; }
+.text h2:first-of-type { margin-top: 0; }
+
+.keine-anim, .keine-anim * { transition: none !important; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
