@@ -1,9 +1,9 @@
 :root {
-  --bg: #0033ff;
-  --ink: #ffffff;
-  --card: #0a1a66;
-  --head: #ffb400;
-  --accent: #ffb400;
+  --bg: #1c1c1e;
+  --ink: #f2f2f2;
+  --card: #2c2c2e;
+  --head: #d9d9d9;
+  --accent: #f2f2f2;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }

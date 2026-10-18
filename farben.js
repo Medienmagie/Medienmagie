@@ -1,7 +1,8 @@
-// Fünf grelle Farbwelten, jeweils Komplementärpaare. Es wird nichts im Browser gespeichert:
-// Die gewählte Farbe wird nur über den Link-Zusatz (#0 bis #4) an die Unterseiten weitergegeben.
+// Eine ruhige Graustufen-Variante (Start) und fünf grelle Farbwelten, jeweils Komplementärpaare. Es wird nichts im Browser gespeichert:
+// Die gewählte Farbe wird nur über den Link-Zusatz (#0 bis #5) an die Unterseiten weitergegeben.
 (function () {
   var paletten = [
+    { bg: "#1c1c1e", ink: "#f2f2f2", card: "#2c2c2e", head: "#d9d9d9", accent: "#f2f2f2" }, // Anthrazit / Hellgrau (ruhig)
     { bg: "#0033ff", ink: "#ffffff", card: "#0a1a66", head: "#ffb400", accent: "#ffb400" }, // Knallblau / Gelborange
     { bg: "#ff1f8e", ink: "#ffffff", card: "#5c0a37", head: "#19ff8c", accent: "#19ff8c" }, // Pink / Neongrün
     { bg: "#7a00ff", ink: "#ffffff", card: "#230a4d", head: "#f2ff00", accent: "#f2ff00" }, // Violett / Neongelb
