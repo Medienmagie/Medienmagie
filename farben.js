@@ -1,13 +1,13 @@
-// Eine ruhige Graustufen-Variante (Start) und fünf grelle Farbwelten, jeweils Komplementärpaare. Es wird nichts im Browser gespeichert:
+// Start in Gelb/Lila, danach Schwarz mit Weiß und Gelb (gut lesbar), dann Komplementärpaare.
 // Die gewählte Farbe wird nur über den Link-Zusatz (#0 bis #5) an die Unterseiten weitergegeben.
 (function () {
   var paletten = [
-    { bg: "#1c1c1e", ink: "#f2f2f2", card: "#2c2c2e", head: "#d9d9d9", accent: "#f2f2f2" }, // Anthrazit / Hellgrau (ruhig)
+    { bg: "#ffe600", ink: "#1a0033", card: "#1a0033", head: "#ffe600", accent: "#5a00ff" }, // Start: Gelb / Lila (wie die Visitenkarte)
+    { bg: "#0a0a0a", ink: "#ffffff", card: "#1c1c1e", head: "#ffe600", accent: "#ffe600" }, // Schwarz mit Weiß und Gelb (gut lesbar)
     { bg: "#0033ff", ink: "#ffffff", card: "#0a1a66", head: "#ffb400", accent: "#ffb400" }, // Knallblau / Gelborange
     { bg: "#ff1f8e", ink: "#ffffff", card: "#5c0a37", head: "#19ff8c", accent: "#19ff8c" }, // Pink / Neongrün
     { bg: "#7a00ff", ink: "#ffffff", card: "#230a4d", head: "#f2ff00", accent: "#f2ff00" }, // Violett / Neongelb
-    { bg: "#ff3b00", ink: "#ffffff", card: "#5c1500", head: "#00e5ff", accent: "#00e5ff" }, // Signalrot / Cyan
-    { bg: "#ffe600", ink: "#1a0033", card: "#1a0033", head: "#ffe600", accent: "#5a00ff" }  // Gelb / Ultraviolett
+    { bg: "#ff3b00", ink: "#ffffff", card: "#5c1500", head: "#00e5ff", accent: "#00e5ff" }  // Signalrot / Cyan
   ];
   var root = document.documentElement;
   var i = 0;
@@ -40,9 +40,19 @@
   setTimeout(function () { document.body.classList.remove("keine-anim"); }, 80);
   var logo = document.getElementById("logo");
   if (logo) {
+    var auge = logo.querySelector(".auge");
+    var reduziert = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (auge) {
+      auge.addEventListener("animationend", function () { auge.classList.remove("blinzeln"); });
+    }
     logo.addEventListener("click", function () {
       i = (i + 1) % paletten.length;
-      anwenden();
+      if (!auge || reduziert) { anwenden(); return; }
+      // Das Auge schließt sich, die Farbe wechselt bei geschlossenem Auge, dann geht es wieder auf.
+      auge.classList.remove("blinzeln");
+      void logo.offsetWidth;
+      auge.classList.add("blinzeln");
+      setTimeout(anwenden, 150);
     });
   }
 })();

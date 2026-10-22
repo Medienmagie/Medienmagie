@@ -1,9 +1,9 @@
 :root {
-  --bg: #1c1c1e;
-  --ink: #f2f2f2;
-  --card: #2c2c2e;
-  --head: #d9d9d9;
-  --accent: #f2f2f2;
+  --bg: #ffe600;
+  --ink: #1a0033;
+  --card: #1a0033;
+  --head: #ffe600;
+  --accent: #5a00ff;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -31,6 +31,9 @@ button.logo svg, a.logo-link svg { width: 100%; height: auto; display: block; }
 .frame, .lid { stroke: var(--ink); transition: stroke .6s ease; }
 .iris { fill: var(--accent); transition: fill .6s ease, transform .15s ease; transform-origin: 100px 80px; }
 .play { fill: var(--bg); transition: fill .6s ease; }
+.auge { transform-origin: 100px 80px; }
+.auge.blinzeln { animation: blinzel .36s ease-in-out; }
+@keyframes blinzel { 0% { transform: scaleY(1); } 45% { transform: scaleY(.06); } 100% { transform: scaleY(1); } }
 button.logo:active .iris { transform: scale(.93); }
 h1 {
   font-family: "Trebuchet MS", system-ui, sans-serif;
@@ -89,4 +92,5 @@ h1 {
 
 .keine-anim, .keine-anim * { transition: none !important; }
 
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+@media (prefers-reduced-motion: reduce) {
+  .auge.blinzeln { animation: none !important; } * { transition: none !important; scroll-behavior: auto !important; } }
